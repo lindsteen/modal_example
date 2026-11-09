@@ -1,0 +1,305 @@
+// Komponentvisningen (Preview / Code). Kun til visningen – bruger komponenternes tokens.
+@use '../styles/breakpoints' as bp;
+
+$topbar: 57px;
+$narrow: 900px;
+
+// Topmenu
+.showcase__topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--rk-s-6);
+  height: $topbar;
+  padding: 0 var(--rk-s-5);
+  background: var(--rk-surface);
+  border-bottom: 1px solid var(--rk-border);
+}
+
+.showcase__title {
+  align-self: center;
+  font-weight: 700;
+  white-space: nowrap;
+
+  @include bp.below(bp.$mobile) { display: none; }
+}
+
+.tabs.showcase__menu {
+  margin: 0;
+  border-bottom: 0;
+
+  .tabs__tab { padding: 0 0 14px; }
+}
+
+.showcase__full-frame {
+  display: block;
+  width: 100%;
+  height: calc(100vh - #{$topbar});
+  height: calc(100dvh - #{$topbar});
+  border: 0;
+}
+
+// Code-visningen
+.code-view {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: var(--rk-s-6);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: var(--rk-s-6) var(--rk-s-5) var(--rk-s-9);
+
+  @media (max-width: $narrow) { grid-template-columns: minmax(0, 1fr); gap: var(--rk-s-5); }
+}
+
+.code-view__nav {
+  position: sticky;
+  top: calc(#{$topbar} + var(--rk-s-6));
+  align-self: start;
+  max-height: calc(100vh - #{$topbar} - var(--rk-s-8));
+  padding: var(--rk-s-4) 0;
+  overflow-y: auto;
+  background: var(--rk-surface);
+  border-radius: var(--rk-radius-card);
+
+  @media (max-width: $narrow) { position: static; max-height: 260px; }
+}
+
+.code-view__group {
+  margin: var(--rk-s-2) var(--rk-s-5);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--rk-grey-500);
+}
+
+.code-view__list {
+  margin: 0 0 var(--rk-s-3);
+  padding: 0;
+  list-style: none;
+}
+
+.code-view__item {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 8px var(--rk-s-5);
+  font-family: inherit;
+  font-size: 14px;
+  text-align: left;
+  color: var(--rk-text);
+  background: none;
+  border: 0;
+  cursor: pointer;
+
+  &:hover { background: var(--rk-sage-50); }
+  &:focus-visible { outline-offset: -2px; }
+
+  &.is-active {
+    font-weight: 700;
+    color: var(--rk-primary);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 0;
+      width: 4px;
+      background: var(--rk-primary);
+    }
+  }
+}
+
+.code-view__main { min-width: 0; }
+
+.code-view__description {
+  margin-top: var(--rk-s-2);
+
+  code {
+    padding: 1px 4px;
+    font-family: Consolas, "Cascadia Mono", Menlo, monospace;
+    font-size: 14px;
+    background: var(--rk-sage-100);
+    border-radius: 4px;
+  }
+}
+
+.code-view__uses {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--rk-s-2);
+  margin-top: var(--rk-s-3);
+}
+
+.chip {
+  padding: 3px 12px;
+  font-family: inherit;
+  color: var(--rk-text);
+  background: var(--rk-surface);
+  border: 1px solid var(--rk-border);
+  border-radius: 30px;
+  cursor: pointer;
+
+  &:hover { border-color: var(--rk-border-strong); }
+}
+
+// Vinduer til preview og kode
+.panel {
+  margin-top: var(--rk-s-5);
+  overflow: hidden;
+  background: var(--rk-surface);
+  border: 1px solid var(--rk-border);
+  border-radius: var(--rk-radius-card);
+}
+
+.panel__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--rk-s-3);
+  padding: var(--rk-s-2) var(--rk-s-4);
+  border-bottom: 1px solid var(--rk-border);
+}
+
+.panel__title {
+  margin: 0 auto 0 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.panel__frame {
+  min-height: 140px;
+  overflow: hidden;
+  resize: vertical;
+
+  iframe { display: block; width: 100%; height: 100%; border: 0; }
+}
+
+.panel__files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rk-s-1);
+}
+
+.file-tab {
+  padding: 6px 10px;
+  font-family: Consolas, "Cascadia Mono", Menlo, monospace;
+  font-size: 13px;
+  color: var(--rk-text);
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover { background: var(--rk-grey-100); }
+  &.is-active { font-weight: 700; background: var(--rk-sage-100); }
+}
+
+.panel__path {
+  margin: 0;
+  padding: var(--rk-s-2) var(--rk-s-4);
+  font-family: Consolas, "Cascadia Mono", Menlo, monospace;
+  font-size: 12px;
+  color: var(--rk-text-subtle);
+}
+
+// Kode (mørk, farvelagt med highlight.js)
+.code-block {
+  display: flex;
+  max-height: 70vh;
+  overflow: auto;
+  font-family: Consolas, "Cascadia Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--rk-grey-100);
+  background: var(--rk-grey-800);
+
+  &:focus-visible { outline-offset: -2px; }
+
+  pre { margin: 0; }
+}
+
+.code-block__gutter {
+  position: sticky;
+  left: 0;
+  padding: var(--rk-s-4) var(--rk-s-3) var(--rk-s-4) var(--rk-s-4);
+  text-align: right;
+  color: var(--rk-grey-400);
+  background: var(--rk-grey-800);
+  border-right: 1px solid var(--rk-grey-700);
+  user-select: none;
+}
+
+.code-block__code {
+  flex: 1;
+  padding: var(--rk-s-4);
+
+  code { white-space: pre; }
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-tag,
+.hljs-name { color: var(--rk-red-400); }
+
+.hljs-string,
+.hljs-regexp { color: var(--rk-green-500); }
+
+.hljs-comment { font-style: italic; color: var(--rk-grey-400); }
+
+.hljs-title,
+.hljs-selector-class,
+.hljs-selector-pseudo,
+.hljs-selector-id { color: var(--rk-yellow-500); }
+
+.hljs-number,
+.hljs-attr,
+.hljs-attribute,
+.hljs-type,
+.hljs-built_in,
+.hljs-variable,
+.hljs-property { color: var(--rk-sage-200); }
+
+.hljs-meta { color: var(--rk-grey-400); }
+
+// Indholdet i preview-vinduerne
+.frame-canvas { padding: var(--rk-s-5); }
+
+.frame-card {
+  max-width: 710px;
+  padding: var(--rk-s-5) var(--rk-s-7);
+  background: var(--rk-surface);
+  border-radius: var(--rk-radius-card);
+
+  @include bp.below(bp.$mobile) { padding: var(--rk-s-5) var(--rk-s-4); }
+}
+
+.frame-variant + .frame-variant { margin-top: var(--rk-s-5); }
+
+.frame-variant__label {
+  margin: 0 0 var(--rk-s-2);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--rk-grey-500);
+}
+
+.frame-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--rk-s-4);
+  justify-content: flex-start;
+}
+
+.frame-reopen {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}

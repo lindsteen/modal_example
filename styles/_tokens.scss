@@ -1,0 +1,49 @@
+// Røde Kors' designtokens for MRK (designsystemet i Figma, samme værdier som i prototypen).
+// Brug kun disse variabler til farver, afstande og runde hjørner.
+
+:root {
+  // Farvepalet
+  --rk-red-50: #FEF5F5;  --rk-red-100: #FFF0F0; --rk-red-200: #FFDEDE;
+  --rk-red-300: #FFC3C3; --rk-red-400: #FF9999; --rk-red-500: #FF5F60;
+  --rk-red-600: #E30A0B; --rk-red-700: #CE0708; --rk-red-800: #AA0A0B; --rk-red-900: #8C1011;
+
+  --rk-grey-0: #FFFFFF;  --rk-grey-50: #F7F7F7; --rk-grey-100: #F5F5F6;
+  --rk-grey-200: #E7E5E7; --rk-grey-300: #C9C5C5; --rk-grey-400: #989598;
+  --rk-grey-500: #767277; --rk-grey-600: #5A585B; --rk-grey-700: #484748;
+  --rk-grey-800: #373538; --rk-grey-900: #000000;
+
+  --rk-sage-50: #F7F7F5;  --rk-sage-100: #E4E3DD; --rk-sage-200: #CBC6BD;
+  --rk-sage-300: #A4998C; --rk-sage-500: #8D8070; --rk-sage-600: #73665B;
+  --rk-sage-700: #5D524B; --rk-sage-800: #514742; --rk-sage-900: #473F3C;
+
+  --rk-green-500: #68AC12; --rk-yellow-500: #FCE400;
+
+  // Typografi: Gotham, hvis den er installeret, ellers Verdana
+  --rk-font: "Gotham", "Gotham Book", Verdana, sans-serif;
+
+  // Afstande (4-px-skala)
+  --rk-s-1: 4px; --rk-s-2: 8px; --rk-s-3: 12px; --rk-s-4: 16px; --rk-s-5: 24px;
+  --rk-s-6: 32px; --rk-s-7: 40px; --rk-s-8: 48px; --rk-s-9: 64px; --rk-s-10: 80px; --rk-s-11: 96px;
+
+  --rk-radius-card: 8px;
+  --rk-radius-modal: 12px;
+  --rk-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+
+  // Roller
+  --rk-text: var(--rk-grey-800);
+  --rk-text-subtle: var(--rk-grey-500);
+  --rk-text-on-primary: var(--rk-grey-0);
+  --rk-text-muted: var(--rk-sage-700);
+  --rk-primary: var(--rk-red-600);
+  --rk-primary-hover: var(--rk-red-800);
+  --rk-primary-pressed: var(--rk-red-900);
+  --rk-surface: var(--rk-grey-0);
+  --rk-error: var(--rk-red-600);
+  --rk-success: var(--rk-green-500);
+
+  // MRK
+  --rk-page-bg: var(--rk-sage-50);
+  --rk-surface-soft: var(--rk-sage-100);
+  --rk-border: var(--rk-grey-200);
+  --rk-border-strong: var(--rk-grey-800);
+}

@@ -1,0 +1,20 @@
+.info-list {
+  margin: 0;
+  padding: var(--rk-s-2) var(--rk-s-5);
+  background: var(--rk-surface-soft);
+  border-radius: var(--rk-radius-card);
+}
+
+.info-list__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rk-s-1);
+  padding: var(--rk-s-3) 0;
+  color: var(--rk-text-muted);
+  border-bottom: 1px solid var(--rk-sage-200);
+
+  &:last-child { border-bottom: 0; }
+}
+
+.info-list__term  { margin: 0; }
+.info-list__value { margin: 0; font-weight: 700; color: var(--rk-text); }

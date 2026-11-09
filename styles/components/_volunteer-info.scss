@@ -1,0 +1,36 @@
+// Modalen "Oplysninger om frivillig"
+.volunteer-info__title         { margin-bottom: var(--rk-s-5); }
+.volunteer-info__section-title { margin: var(--rk-s-5) 0 var(--rk-s-4); }
+.volunteer-info__subheading    { margin: var(--rk-s-5) 0 var(--rk-s-2); }
+.volunteer-info__actions       { margin-top: var(--rk-s-5); }
+
+// Rolle med "Vis info" / "Skjul info"
+.role-item { border-bottom: 1px solid var(--rk-border); }
+
+.role-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--rk-s-4);
+  padding: var(--rk-s-3) 0;
+  color: var(--rk-text-muted);
+}
+
+.role-item__toggle {
+  min-width: 128px;
+
+  .icon { transition: transform .2s; }
+  &[aria-expanded='true'] .icon { transform: rotate(180deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .icon { transition: none; }
+  }
+}
+
+.role-item__panel {
+  padding: var(--rk-s-2) 0 var(--rk-s-5);
+
+  .form-field { margin-bottom: var(--rk-s-4); }
+}
+
+.role-item__text { margin-bottom: var(--rk-s-4); }

@@ -1,0 +1,6 @@
+// Brudpunkt fra prototypen
+$mobile: 767px;
+
+@mixin below($width) {
+  @media (max-width: $width) { @content; }
+}

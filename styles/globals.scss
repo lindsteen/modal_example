@@ -1,0 +1,11 @@
+// Global SCSS for MRK – importeres én gang i pages/_app.tsx.
+@use 'tokens';
+@use 'base';
+@use 'typography';
+@use 'components/icon';
+@use 'components/button';
+@use 'components/form';
+@use 'components/tabs';
+@use 'components/modal';
+@use 'components/info-list';
+@use 'components/volunteer-info';

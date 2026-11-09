@@ -1,0 +1,104 @@
+// Button: `button text-md bg-primary size-md pill button-normal`.
+// Farvevarianterne bruger :where(), så deaktiveret tilstand og sammenhængens klasser kan overskrive dem.
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rk-s-2);
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color .15s, color .15s, border-color .15s;
+
+  &.size-md { min-height: 46px; padding: 12px 32px; }
+  &.size-sm { min-height: 36px; padding: 6px 20px; }
+
+  &.pill    { border-radius: 30px; }
+  &.rounded { border-radius: 4px; }
+
+  &.full-width { width: 100%; }
+  &.underlined { text-decoration: underline; text-underline-offset: 3px; }
+}
+
+// Primær
+.button:where(.bg-primary.button-normal) {
+  background: var(--rk-primary);
+  border-color: var(--rk-primary);
+  color: var(--rk-text-on-primary);
+
+  &:hover  { background: var(--rk-primary-hover); border-color: var(--rk-primary-hover); color: var(--rk-text-on-primary); }
+  &:active { background: var(--rk-primary-pressed); border-color: var(--rk-primary-pressed); }
+}
+
+// Sekundær
+.button:where(.bg-primary.button-inverted) {
+  background: var(--rk-surface);
+  border-color: var(--rk-primary);
+  color: var(--rk-primary);
+
+  &:hover { background: var(--rk-red-50); border-color: var(--rk-primary-hover); color: var(--rk-primary-hover); }
+}
+
+.button:where(.bg-black.button-normal) {
+  background: var(--rk-grey-800);
+  border-color: var(--rk-grey-800);
+  color: var(--rk-grey-0);
+
+  &:hover { background: var(--rk-grey-700); border-color: var(--rk-grey-700); color: var(--rk-grey-0); }
+}
+
+// Tertiær
+.button:where(.bg-black.button-inverted) {
+  background: var(--rk-surface);
+  border-color: var(--rk-border-strong);
+  color: var(--rk-text);
+
+  &:hover { background: var(--rk-grey-100); color: var(--rk-text); }
+}
+
+.button:where(.bg-white.button-normal) {
+  background: var(--rk-surface);
+  border-color: var(--rk-surface);
+  color: var(--rk-text);
+
+  &:hover { box-shadow: var(--rk-shadow); color: var(--rk-text); }
+}
+
+.button:where(.bg-white.button-inverted) {
+  background: transparent;
+  border-color: var(--rk-grey-0);
+  color: var(--rk-grey-0);
+
+  &:hover { text-decoration: underline; }
+}
+
+.button:where(.bg-transparent) {
+  background: transparent;
+  border-color: transparent;
+  color: inherit;
+  padding-inline: 0;
+
+  &:hover { text-decoration: underline; }
+}
+
+.button:disabled,
+.button[aria-disabled='true'] {
+  background: var(--rk-grey-200);
+  border-color: var(--rk-grey-200);
+  color: var(--rk-grey-500);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rk-s-4);
+  align-items: center;
+  justify-content: flex-end;
+}

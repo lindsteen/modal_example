@@ -1,0 +1,15 @@
+.icon {
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+
+  &.icon-xsmall { width: 14px; height: 14px; }
+  &.icon-small  { width: 18px; height: 18px; }
+  &.icon-medium { width: 20px; height: 20px; }
+  &.icon-large  { width: 24px; height: 24px; }
+
+  &.currentColor { color: currentColor; }
+  &.primary { color: var(--rk-primary); }
+}
+
+.logo { display: block; }

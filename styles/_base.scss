@@ -1,0 +1,16 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  font-family: var(--rk-font);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--rk-text);
+  background: var(--rk-page-bg);
+  -webkit-font-smoothing: antialiased;
+
+  &.modal-open { overflow: hidden; }
+}
+
+:focus-visible { outline: 2px solid var(--rk-primary); outline-offset: 2px; }
