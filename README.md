@@ -4,6 +4,7 @@ Modalen fra `../oplysninger-om-frivillig-modal.html` som React-komponenter efter
 
 ## Kør
 
+- https://lindsteen.github.io/modal_example/ – siden på GitHub Pages ([repo](https://github.com/lindsteen/modal_example)). Den bygges og udgives automatisk ved hvert push til `main`.
 - `preview.html` – åbn direkte i en browser. Alt er indbygget.
 - `npm install` og derefter `npm run dev` – Next.js på http://localhost:3000.
 - `npm run preview` – bygger `preview.html` igen efter ændringer.
