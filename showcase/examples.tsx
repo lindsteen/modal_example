@@ -189,7 +189,7 @@ export const examples: Example[] = [
     name: 'VolunteerInfoModal',
     group: 'Modal',
     description:
-      'Modalen "Oplysninger om frivillig" for en frivillig: fanerne Personoplysninger, Frivilligoplysninger og Kurser.',
+      'Modalen "Oplysninger om frivillig" for en frivillig: fanerne Frivilligoplysninger, Personoplysninger og Kurser.',
     files: [
       'components/VolunteerInfoModal/VolunteerInfoModal.tsx',
       'lib/types.ts',

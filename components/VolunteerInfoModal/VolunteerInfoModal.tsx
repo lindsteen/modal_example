@@ -10,8 +10,8 @@ import { VolunteerInfoTab } from './VolunteerInfoTab';
 export type VolunteerInfoTabId = 'person' | 'frivillig' | 'kurser';
 
 const TABS = [
-  { id: 'person', label: 'Personoplysninger' },
   { id: 'frivillig', label: 'Frivilligoplysninger' },
+  { id: 'person', label: 'Personoplysninger' },
   { id: 'kurser', label: 'Kurser' },
 ] as const satisfies ReadonlyArray<{ id: VolunteerInfoTabId; label: string }>;
 
