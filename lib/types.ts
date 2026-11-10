@@ -12,6 +12,14 @@ export interface PersonalInfo {
   address: string;
   postalCode: string;
   city: string;
+  mobile: string;
+  otherPhone: string;
+  /** Telefonnummer, som den frivillige selv har givet samtykke til at vise. Kan ikke rettes af andre. */
+  consentPhone: string;
+  email: string;
+  loginEmail: string;
+  /** E-mailadresse, som den frivillige selv har givet samtykke til at vise. Kan ikke rettes af andre. */
+  consentEmail: string;
 }
 
 export interface VolunteerRole {

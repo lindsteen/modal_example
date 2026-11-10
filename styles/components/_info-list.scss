@@ -1,8 +1,22 @@
 .info-list {
-  margin: 0;
   padding: var(--rk-s-2) var(--rk-s-5);
   background: var(--rk-surface-soft);
   border-radius: var(--rk-radius-card);
+}
+
+// 20 px som i MRK (designsystemets h4)
+.info-list__title {
+  margin: var(--rk-s-4) 0 var(--rk-s-2);
+  font-size: 20px;
+}
+
+.info-list__rows { margin: 0; }
+
+// Tekst og knap i boksen
+.info-list__content {
+  padding: var(--rk-s-2) 0 var(--rk-s-4);
+
+  .text { margin-bottom: var(--rk-s-4); }
 }
 
 .info-list__row {

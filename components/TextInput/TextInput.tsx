@@ -15,15 +15,16 @@ export interface TextInputProps
   error?: string;
 }
 
-export function TextInput({ id, label, value, onChange, icon, help, error, type = 'text', className, ...rest }: TextInputProps) {
+export function TextInput({ id, label, value, onChange, icon, help, error, required, type = 'text', className, ...rest }: TextInputProps) {
   return (
-    <Field id={id} label={label} help={help} error={error}>
+    <Field id={id} label={label} help={help} error={error} required={required}>
       <div className={cx('text-input', icon && 'has-icon', className)}>
         <input
           id={id}
           type={type}
           className="text-input__field text-md"
           value={value}
+          required={required}
           onChange={(event) => onChange(event.target.value)}
           aria-invalid={error ? true : undefined}
           aria-describedby={describedBy(id, help, error)}

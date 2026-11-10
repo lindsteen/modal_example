@@ -3,6 +3,8 @@
 .volunteer-info__section-title { margin: var(--rk-s-5) 0 var(--rk-s-4); }
 .volunteer-info__subheading    { margin: var(--rk-s-5) 0 var(--rk-s-2); }
 .volunteer-info__actions       { margin-top: var(--rk-s-5); }
+// 64 px luft over og under boksen, som i MRK (margenerne til felt og knapper lægges ikke sammen)
+.volunteer-info__summary       { margin: var(--rk-s-9) 0; }
 
 // Rolle med "Vis info" / "Skjul info"
 .role-item { border-bottom: 1px solid var(--rk-border); }

@@ -125,6 +125,7 @@ function TextInputExample(props: {
   error?: string;
   help?: string;
   readOnly?: boolean;
+  required?: boolean;
   id: string;
 }) {
   const [value, setValue] = useState(props.initial ?? '');
@@ -139,6 +140,7 @@ function TextInputExample(props: {
       error={props.error}
       help={props.help}
       readOnly={props.readOnly}
+      required={props.required}
     />
   );
 }
@@ -203,10 +205,11 @@ export const examples: Example[] = [
     id: 'PersonalInfoTab',
     name: 'PersonalInfoTab',
     group: 'Dele af modalen',
-    description: 'Fanen "Personoplysninger". "Annullér" sætter felterne tilbage til de gemte værdier.',
+    description:
+      'Fanen "Personoplysninger" med kontaktoplysninger og boksen "Frivilligoplysninger" med "Opret som frivillig". "Annullér" sætter felterne tilbage til de gemte værdier. E-mailadressen skal udfyldes.',
     files: ['components/VolunteerInfoModal/PersonalInfoTab.tsx'],
-    height: 620,
-    variants: [{ render: () => <PersonalInfoTab personal={mockVolunteer.personal} onSave={noop} /> }],
+    height: 900,
+    variants: [{ render: () => <PersonalInfoTab personal={mockVolunteer.personal} onSave={noop} onCreateVolunteer={noop} /> }],
   },
   {
     id: 'VolunteerInfoTab',
@@ -299,9 +302,21 @@ export const examples: Example[] = [
     group: 'Basiskomponenter',
     description: 'Tekstfelt med synlig label, evt. ikon, hjælpetekst og fejlbesked.',
     files: ['components/TextInput/TextInput.tsx', 'styles/components/_form.scss'],
-    height: 560,
+    height: 760,
     variants: [
       { label: 'Standard', render: () => <TextInputExample id="eks-fornavn" label="Fornavn" initial="Cynthia" /> },
+      {
+        label: 'Påkrævet med hjælpetekst',
+        render: () => (
+          <TextInputExample
+            id="eks-email"
+            label="Din e-mailadresse"
+            help="Denne e-mail bruger vi til at skrive mails til dig fra mit.rodekors.dk."
+            placeholder="Din e-mailadresse"
+            required
+          />
+        ),
+      },
       { label: 'Med ikon', render: () => <TextInputExample id="eks-dato" label="Fødselsdato" initial="09.02.1951" icon="input-calendar" /> },
       { label: 'Med pladsholder', render: () => <TextInputExample id="eks-noter" label="Noter om opgave" placeholder="F. eks. Chauffør, Møbler" /> },
       {
@@ -352,11 +367,35 @@ export const examples: Example[] = [
     id: 'InfoList',
     name: 'InfoList',
     group: 'Basiskomponenter',
-    description: 'Skrivebeskyttede oplysninger i en sandfarvet boks. Tomme værdier vises som "-".',
+    description:
+      'Sandfarvet boks med skrivebeskyttede oplysninger og/eller andet indhold, evt. med overskrift. Tomme værdier vises som "-".',
     files: ['components/InfoList/InfoList.tsx', 'styles/components/_info-list.scss'],
-    height: 300,
+    height: 760,
     variants: [
       {
+        label: 'Med overskrift, tekst og knap',
+        render: () => (
+          <InfoList title="Frivilligoplysninger">
+            <Text>Denne person er bare medlem af afdelingen. Hvis de gerne vil være frivillige, kan du oprette dem herunder.</Text>
+            <Button>Opret som frivillig</Button>
+          </InfoList>
+        ),
+      },
+      {
+        label: 'Med overskrift og rækker',
+        render: () => (
+          <InfoList
+            title="Frivilligoplysninger"
+            items={[
+              { term: 'Startdato som frivillig:', value: '13. december 2004' },
+              { term: 'RKID:', value: '1000123' },
+              { term: 'ID-kort udstedelsesdato:', value: null },
+            ]}
+          />
+        ),
+      },
+      {
+        label: 'Uden overskrift',
         render: () => (
           <InfoList
             items={[

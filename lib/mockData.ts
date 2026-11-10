@@ -12,6 +12,12 @@ export const mockVolunteer: Volunteer = {
     address: 'Solhøjen 22',
     postalCode: '8381',
     city: 'Tilst',
+    mobile: '23 45 67 89',
+    otherPhone: '',
+    consentPhone: '',
+    email: 'cynthia.chavez@eksempel.dk',
+    loginEmail: 'cynthia.chavez@eksempel.dk',
+    consentEmail: '',
   },
   roles: [
     {

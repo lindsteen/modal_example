@@ -26,6 +26,8 @@ export interface VolunteerInfoModalProps {
   onSaveRole: (volunteerId: string, role: VolunteerRole) => void;
   onSetLeave?: (volunteerId: string, roleId: string) => void;
   onChangeRole?: (volunteerId: string, roleId: string) => void;
+  /** "Opret som frivillig" under Personoplysninger. */
+  onCreateVolunteer?: (volunteerId: string) => void;
   /** Fanen, modalen åbner på. Standard: Frivilligoplysninger. */
   initialTab?: VolunteerInfoTabId;
 }
@@ -62,6 +64,7 @@ function VolunteerInfoContent({
   onSaveRole,
   onSetLeave,
   onChangeRole,
+  onCreateVolunteer,
   initialTab = 'frivillig',
   onTabChange,
 }: VolunteerInfoContentProps) {
@@ -81,7 +84,11 @@ function VolunteerInfoContent({
       <Tabs items={TABS} activeId={activeTab} onChange={changeTab} idPrefix={TABS_ID} label="Oplysninger om den frivillige" />
 
       <TabPanel id="person" activeId={activeTab} idPrefix={TABS_ID}>
-        <PersonalInfoTab personal={volunteer.personal} onSave={(personal) => onSavePersonal(volunteer.id, personal)} />
+        <PersonalInfoTab
+          personal={volunteer.personal}
+          onSave={(personal) => onSavePersonal(volunteer.id, personal)}
+          onCreateVolunteer={onCreateVolunteer && (() => onCreateVolunteer(volunteer.id))}
+        />
       </TabPanel>
 
       <TabPanel id="frivillig" activeId={activeTab} idPrefix={TABS_ID}>
