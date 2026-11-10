@@ -271,7 +271,7 @@ $narrow: 900px;
 .frame-canvas { padding: var(--rk-s-5); }
 
 .frame-card {
-  max-width: 710px;
+  max-width: 54rem; // samme bredde som modalen
   padding: var(--rk-s-5) var(--rk-s-7);
   background: var(--rk-surface);
   border-radius: var(--rk-radius-card);

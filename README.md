@@ -31,3 +31,4 @@ Siden har topmenuen Preview og Code. Preview viser modalen. Code viser preview o
 - Modalen passer i skærmen på mobil.
 - Fanerne i modalen kan bruges med piletasterne, og fokus holdes i modalen.
 - Der er ingen grå linje over "Annullér" og "Gem oplysninger" i rollerne.
+- Modalen er 864 px (54rem) bred som i MRK (prototypen: 710 px).

@@ -22,7 +22,7 @@ $top: var(--rk-s-10);
   position: relative;
   display: flex;
   flex-direction: column;
-  width: min(710px, 100%);
+  width: min(54rem, 100%); // 864 px som i MRK
   padding: var(--rk-s-8) var(--rk-s-5) var(--rk-s-6) var(--rk-s-7);
   background: var(--rk-surface);
   border-radius: var(--rk-radius-modal);
