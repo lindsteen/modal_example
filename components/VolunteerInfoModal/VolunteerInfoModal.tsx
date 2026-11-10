@@ -68,7 +68,11 @@ function VolunteerInfoContent({
   initialTab = 'frivillig',
   onTabChange,
 }: VolunteerInfoContentProps) {
-  const [activeTab, setActiveTab] = useState<VolunteerInfoTabId>(initialTab);
+  // Et medlem, der endnu ikke er frivillig, har kun fanen Personoplysninger
+  const memberOnly = volunteer.kind === 'member';
+  const tabs = memberOnly ? TABS.filter((tab) => tab.id === 'person') : TABS;
+  const hasTab = (id: VolunteerInfoTabId) => tabs.some((tab) => tab.id === id);
+  const [activeTab, setActiveTab] = useState<VolunteerInfoTabId>(hasTab(initialTab) ? initialTab : 'person');
 
   const changeTab = (id: string) => {
     setActiveTab(id as VolunteerInfoTabId);
@@ -81,28 +85,33 @@ function VolunteerInfoContent({
         Oplysninger om {fullName(volunteer.personal)}
       </Heading>
 
-      <Tabs items={TABS} activeId={activeTab} onChange={changeTab} idPrefix={TABS_ID} label="Oplysninger om den frivillige" />
+      <Tabs items={tabs} activeId={activeTab} onChange={changeTab} idPrefix={TABS_ID} label="Oplysninger om personen" />
 
       <TabPanel id="person" activeId={activeTab} idPrefix={TABS_ID}>
         <PersonalInfoTab
           personal={volunteer.personal}
+          memberOnly={memberOnly}
           onSave={(personal) => onSavePersonal(volunteer.id, personal)}
           onCreateVolunteer={onCreateVolunteer && (() => onCreateVolunteer(volunteer.id))}
         />
       </TabPanel>
 
-      <TabPanel id="frivillig" activeId={activeTab} idPrefix={TABS_ID}>
-        <VolunteerInfoTab
-          volunteer={volunteer}
-          onSaveRole={(role) => onSaveRole(volunteer.id, role)}
-          onSetLeave={onSetLeave && ((roleId) => onSetLeave(volunteer.id, roleId))}
-          onChangeRole={onChangeRole && ((roleId) => onChangeRole(volunteer.id, roleId))}
-        />
-      </TabPanel>
+      {hasTab('frivillig') && (
+        <TabPanel id="frivillig" activeId={activeTab} idPrefix={TABS_ID}>
+          <VolunteerInfoTab
+            volunteer={volunteer}
+            onSaveRole={(role) => onSaveRole(volunteer.id, role)}
+            onSetLeave={onSetLeave && ((roleId) => onSetLeave(volunteer.id, roleId))}
+            onChangeRole={onChangeRole && ((roleId) => onChangeRole(volunteer.id, roleId))}
+          />
+        </TabPanel>
+      )}
 
-      <TabPanel id="kurser" activeId={activeTab} idPrefix={TABS_ID}>
-        <CoursesTab courses={volunteer.courses} onClose={onClose} />
-      </TabPanel>
+      {hasTab('kurser') && (
+        <TabPanel id="kurser" activeId={activeTab} idPrefix={TABS_ID}>
+          <CoursesTab courses={volunteer.courses} onClose={onClose} />
+        </TabPanel>
+      )}
     </>
   );
 }

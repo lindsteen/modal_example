@@ -18,7 +18,7 @@ import { PersonalInfoTab } from '@/components/VolunteerInfoModal/PersonalInfoTab
 import { RoleItem } from '@/components/VolunteerInfoModal/RoleItem';
 import { VolunteerInfoModal } from '@/components/VolunteerInfoModal/VolunteerInfoModal';
 import { VolunteerInfoTab } from '@/components/VolunteerInfoModal/VolunteerInfoTab';
-import { mockVolunteer } from '@/lib/mockData';
+import { mockMember, mockVolunteer } from '@/lib/mockData';
 import type { Gender, Volunteer } from '@/lib/types';
 
 export type ExampleGroup = 'Modal' | 'Dele af modalen' | 'Basiskomponenter';
@@ -46,8 +46,8 @@ export const EXAMPLE_GROUPS: ExampleGroup[] = ['Modal', 'Dele af modalen', 'Basi
 
 const noop = () => {};
 
-function VolunteerInfoModalExample() {
-  const [volunteer, setVolunteer] = useState<Volunteer>(mockVolunteer);
+function VolunteerInfoModalExample({ person }: { person: Volunteer }) {
+  const [volunteer, setVolunteer] = useState<Volunteer>(person);
   const [open, setOpen] = useState(true);
 
   return (
@@ -188,7 +188,8 @@ export const examples: Example[] = [
     id: 'VolunteerInfoModal',
     name: 'VolunteerInfoModal',
     group: 'Modal',
-    description: 'Modalen "Oplysninger om frivillig" med fanerne Personoplysninger, Frivilligoplysninger og Kurser.',
+    description:
+      'Modalen "Oplysninger om frivillig" for en frivillig: fanerne Personoplysninger, Frivilligoplysninger og Kurser.',
     files: [
       'components/VolunteerInfoModal/VolunteerInfoModal.tsx',
       'lib/types.ts',
@@ -199,17 +200,33 @@ export const examples: Example[] = [
     ],
     height: 680,
     fullFrame: true,
-    variants: [{ render: () => <VolunteerInfoModalExample /> }],
+    variants: [{ render: () => <VolunteerInfoModalExample person={mockVolunteer} /> }],
+  },
+  {
+    id: 'VolunteerInfoModalMember',
+    name: 'VolunteerInfoModal – kun medlem',
+    group: 'Modal',
+    description:
+      'Samme modal for et medlem, der endnu ikke er frivillig (`kind: \'member\'`): kun fanen Personoplysninger og boksen med "Opret som frivillig".',
+    files: ['components/VolunteerInfoModal/VolunteerInfoModal.tsx', 'lib/types.ts', 'lib/mockData.ts'],
+    height: 680,
+    fullFrame: true,
+    variants: [{ render: () => <VolunteerInfoModalExample person={mockMember} /> }],
   },
   {
     id: 'PersonalInfoTab',
     name: 'PersonalInfoTab',
     group: 'Dele af modalen',
     description:
-      'Fanen "Personoplysninger" med kontaktoplysninger og boksen "Frivilligoplysninger" med "Opret som frivillig". "Annullér" sætter felterne tilbage til de gemte værdier. E-mailadressen skal udfyldes.',
+      'Fanen "Personoplysninger" med kontaktoplysninger. For et medlem (`memberOnly`) vises boksen "Frivilligoplysninger" med "Opret som frivillig". "Annullér" sætter felterne tilbage til de gemte værdier. E-mailadressen skal udfyldes.',
     files: ['components/VolunteerInfoModal/PersonalInfoTab.tsx'],
     height: 900,
-    variants: [{ render: () => <PersonalInfoTab personal={mockVolunteer.personal} onSave={noop} onCreateVolunteer={noop} /> }],
+    variants: [
+      {
+        label: 'Kun medlem (med boksen)',
+        render: () => <PersonalInfoTab personal={mockMember.personal} memberOnly onSave={noop} onCreateVolunteer={noop} />,
+      },
+    ],
   },
   {
     id: 'VolunteerInfoTab',
@@ -376,7 +393,7 @@ export const examples: Example[] = [
         label: 'Med overskrift, tekst og knap',
         render: () => (
           <InfoList title="Frivilligoplysninger">
-            <Text>Denne person er bare medlem af afdelingen. Hvis de gerne vil være frivillige, kan du oprette dem herunder.</Text>
+            <Text>Denne person er et medlem. Hvis de også gerne vil være frivillige, kan du oprette dem herunder.</Text>
             <Button>Opret som frivillig</Button>
           </InfoList>
         ),

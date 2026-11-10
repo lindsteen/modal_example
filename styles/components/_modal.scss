@@ -1,7 +1,7 @@
 @use '../breakpoints' as bp;
 
 // Modal forankret i toppen: den flytter sig ikke, når indholdet vokser, og indholdet scroller indeni.
-$top: var(--rk-s-10);
+$top: 4.5rem;
 
 .modal-backdrop {
   position: fixed;

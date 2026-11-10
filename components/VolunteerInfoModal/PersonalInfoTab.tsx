@@ -26,6 +26,8 @@ function emailError(email: string) {
 export interface PersonalInfoTabProps {
   personal: PersonalInfo;
   onSave: (personal: PersonalInfo) => void;
+  /** Personen er kun medlem: viser boksen Frivilligoplysninger med "Opret som frivillig". */
+  memberOnly?: boolean;
   /** "Opret som frivillig" i boksen Frivilligoplysninger. */
   onCreateVolunteer?: () => void;
 }
@@ -34,7 +36,7 @@ export interface PersonalInfoTabProps {
  * Fanen "Personoplysninger". "Annullér" sætter felterne tilbage til de gemte værdier.
  * Felterne med samtykke er skrivebeskyttede: kun den frivillige selv kan give samtykke.
  */
-export function PersonalInfoTab({ personal, onSave, onCreateVolunteer }: PersonalInfoTabProps) {
+export function PersonalInfoTab({ personal, onSave, memberOnly = false, onCreateVolunteer }: PersonalInfoTabProps) {
   const [draft, setDraft] = useState(personal);
   const [showErrors, setShowErrors] = useState(false);
   const error = emailError(draft.email);
@@ -130,10 +132,12 @@ export function PersonalInfoTab({ personal, onSave, onCreateVolunteer }: Persona
         readOnly
       />
 
-      <InfoList title="Frivilligoplysninger" className="volunteer-info__summary">
-        <Text>Denne person er bare medlem af afdelingen. Hvis de gerne vil være frivillige, kan du oprette dem herunder.</Text>
-        <Button onClick={onCreateVolunteer}>Opret som frivillig</Button>
-      </InfoList>
+      {memberOnly && (
+        <InfoList title="Frivilligoplysninger" className="volunteer-info__summary">
+          <Text>Denne person er et medlem. Hvis de også gerne vil være frivillige, kan du oprette dem herunder.</Text>
+          <Button onClick={onCreateVolunteer}>Opret som frivillig</Button>
+        </InfoList>
+      )}
 
       <FormActions onCancel={handleCancel} />
     </form>

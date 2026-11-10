@@ -47,8 +47,12 @@ export interface Course {
   completedDate: string;
 }
 
+/** "volunteer" = frivillig i aktiviteten. "member" = kun medlem af afdelingen, endnu ikke frivillig. */
+export type PersonKind = 'volunteer' | 'member';
+
 export interface Volunteer {
   id: string;
+  kind: PersonKind;
   personal: PersonalInfo;
   roles: VolunteerRole[];
   general: GeneralVolunteerInfo;
